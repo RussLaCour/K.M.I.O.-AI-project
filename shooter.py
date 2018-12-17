@@ -209,7 +209,7 @@ bullets = pygame.sprite.Group()
 sprites.add(player)
 
 
-for i in range(1):
+for i in range(8):
     m = Enemy()
     sprites.add(m)
     enemy.add(m)
