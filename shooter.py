@@ -163,7 +163,7 @@ class Enemy(pygame.sprite.Sprite):
         if self.rect.top > HEIGHT + 10 or self.rect.left < -25 or self.rect.right > WIDTH + 20:
             self.rect.x = random.randrange(WIDTH - self.rect.width)
             self.rect.y = random.randrange(-100, -40)
-            self.speedy = random.randrange(1, 8)
+            self.speed = random.randrange(1, 8)
         self.move_to_player(player)
         if self.rect.x >= player.rect.x - 10 or self.rect.x <= player.rect.x + 10:
             self.shoot()
@@ -176,7 +176,7 @@ class Enemy(pygame.sprite.Sprite):
         dist = math.sqrt(self.dx  ** 2 + self.dy  ** 2)
 
         try:
-            self.dy = self.dx / dist
+            self.dx = self.dx / dist
             self.dy = self.dy / dist
         except ZeroDivisionError:
             dist = 1
@@ -238,6 +238,7 @@ while running:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 player.shoot()
+
     sprites.update()
 
     hits = pygame.sprite.groupcollide(enemy, bullets, True, True)
